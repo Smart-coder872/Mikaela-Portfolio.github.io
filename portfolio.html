@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mikaela Miller — Robotics Engineer</title>
+  <link rel="preconnect" href="https://api.fontshare.com"/>
+  <link href="https://api.fontshare.com/v2/css?f[]=space-grotesk@400,700&f[]=pilcrow-rounded@700,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div id="prog" aria-hidden="true"></div>
+
+<header class="header">
+  <div class="nav-inner">
+    <nav aria-label="Primary navigation">
+      <div class="nav-links">
+        <button class="nav-btn active" type="button" onclick="goTo(0)">About</button>
+        <button class="nav-btn" type="button" onclick="goTo(1)">Projects</button>
+        <button class="nav-btn" type="button" onclick="goTo(2)">Education</button>
+        <button class="nav-btn" type="button" onclick="goTo(3)">Contact</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<canvas id="transition-canvas" aria-hidden="true"></canvas>
+<div id="section-badge" aria-hidden="true"><div class="badge-dot"></div><span id="badge-text">Monitor</span></div>
+
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<main id="main" tabindex="-1">
+
+  <!-- SECTION 0 — MONITOR -->
+  <div id="mon-panel" class="sec-panel sec-active" role="region" aria-label="About section">
+  <div id="mon">
+    <svg id="mon-svg" viewBox="290 0 20 530" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mg-bezel" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#2a2e38"/>
+          <stop offset="100%" stop-color="#1a1d24"/>
+        </linearGradient>
+        <linearGradient id="mg-screen-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#050f09"/>
+          <stop offset="100%" stop-color="#020805"/>
+        </linearGradient>
+        <linearGradient id="mg-stand" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#252830"/>
+          <stop offset="100%" stop-color="#13151b"/>
+        </linearGradient>
+        <linearGradient id="mg-base" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#1c1f27"/>
+          <stop offset="50%"  stop-color="#252830"/>
+          <stop offset="100%" stop-color="#1c1f27"/>
+        </linearGradient>
+        <filter id="mg-glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+        <filter id="screen-glow">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+        <radialGradient id="mg-glare" cx="30%" cy="18%" r="55%">
+          <stop offset="0%"   stop-color="rgba(255,255,255,.09)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </radialGradient>
+        <pattern id="scanlines" x="0" y="0" width="2" height="4" patternUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="2" height="1" fill="rgba(0,0,0,.18)"/>
+        </pattern>
+      </defs>
+
+      <ellipse cx="320" cy="524" rx="230" ry="8" fill="rgba(0,0,0,.45)"/>
+
+      <rect x="290" y="418" width="60" height="58" rx="4" fill="url(#mg-stand)" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+      <rect x="298" y="420" width="8" height="54" rx="3" fill="rgba(255,255,255,.04)"/>
+
+      <rect x="195" y="472" width="250" height="22" rx="6" fill="url(#mg-base)" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+      <rect x="195" y="472" width="250" height="3" rx="3" fill="rgba(255,255,255,.06)"/>
+      <rect x="210" y="488" width="32" height="6" rx="3" fill="#0e1015"/>
+      <rect x="398" y="488" width="32" height="6" rx="3" fill="#0e1015"/>
+
+      <rect x="20" y="18" width="600" height="408" rx="18" fill="url(#mg-bezel)" stroke="rgba(255,255,255,.06)" stroke-width="1.5"/>
+      <rect x="22" y="18" width="596" height="6" rx="9" fill="rgba(255,255,255,.07)"/>
+      <rect x="20" y="20" width="6" height="402" rx="3" fill="rgba(255,255,255,.05)"/>
+      <rect x="20" y="412" width="600" height="14" rx="9" fill="rgba(0,0,0,.25)"/>
+
+      <g fill="rgba(0,0,0,.35)" stroke="rgba(255,255,255,.04)" stroke-width=".5">
+        <rect x="30" y="340" width="14" height="3" rx="1.5"/>
+        <rect x="30" y="348" width="14" height="3" rx="1.5"/>
+        <rect x="30" y="356" width="14" height="3" rx="1.5"/>
+        <rect x="30" y="364" width="14" height="3" rx="1.5"/>
+        <rect x="30" y="372" width="14" height="3" rx="1.5"/>
+      </g>
+
+      <circle cx="603" cy="400" r="5" fill="#00ff88" opacity=".9">
+        <animate attributeName="opacity" values=".4;1;.4" dur="2.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="603" cy="400" r="8" fill="none" stroke="#00ff88" stroke-width=".5" opacity=".3"/>
+
+      <rect x="48" y="38" width="544" height="358" rx="10" fill="#010804" stroke="rgba(0,0,0,.8)" stroke-width="3"/>
+      <rect x="52" y="42" width="536" height="350" rx="7" fill="url(#mg-screen-bg)"/>
+      <rect x="52" y="42" width="536" height="350" rx="7" fill="rgba(0,255,136,.018)"/>
+      <rect x="52" y="42" width="536" height="350" rx="7" fill="url(#scanlines)" opacity=".6"/>
+
+      <foreignObject x="56" y="46" width="528" height="342">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="term-wrap">
+          <div class="term-bar">
+            <div class="term-dot term-dot-r"></div>
+            <div class="term-dot term-dot-y"></div>
+            <div class="term-dot term-dot-g"></div>
+            <span class="term-title">mikaela@career:~</span>
+          </div>
+          <div class="term-line" style="margin-top:.35rem"><span class="term-prompt"/><span class="term-cmd">git log --career</span></div>
+          <div class="term-name">Mikaela Miller</div>
+          <div class="term-role">Robotics Engineer</div>
+          <div class="term-line"><span class="term-out"><span class="term-val">Building robotic systems that move simulation and theory into reality</span></span></div>
+
+          <div class="term-tags">
+            <span class="term-tag">Robot Perception</span>
+            <span class="term-tag">Embedded Systems</span>
+            <span class="term-tag">Localization</span>
+            <span class="term-tag">Networks</span>
+            <span class="term-tag">Sensor Fusion</span>
+            <span class="term-tag">Control Systems</span>
+            <span class="term-tag">Fabrication</span>
+            <span class="term-tag">Tough Environments</span>
+          </div>
+          <div class="term-line" style="margin-top:.35rem"><span class="term-prompt"/><span class="term-cmd">$ who_am_i</span></div>
+          <div class="term-line"><span class="term-out"><span class="term-val">▶ Field robotics engineer experienced in autonomous and adaptive systems for aerospace environments, search and rescue, and wearable devices</span></span></div>
+
+          <div class="term-line" style="margin-top:.35rem"><span class="term-prompt"/><span class="term-cmd">$ git status</span></div>
+          <div class="term-line"><span class="term-out"><span class="term-val">▶ Actively working on embedded software, controls, software-to-hardware system integration, and fabrication</span></span></div>
+          <div class="term-line"><span class="term-out"><span class="term-val">▶ Interested in how robust software, embedded hardware, and real-world constraints meet</span></span></div>
+          <div class="term-line"><span class="term-out"><span class="term-val">▶ Work spans computation-heavy reasoning, low-level implementation, and fabrication-driven prototyping, with a strong emphasis on systems beyond the lab</span></span></div>
+          <div class="term-line" style="margin-top:.35rem"><span class="term-prompt"/><span class="term-cmd">$ git approach</span></div>
+          <div class="term-line"><span class="term-out"><span class="term-val">▶ I build from foundational concepts, iterate frequently, and keep my work clean for collaboration</span></span></div>
+
+          <div class="term-line" style="margin-top:.4rem"><span class="term-prompt">$</span> <span class="term-cursor"<span></div>
+        </div>
+      </foreignObject>
+
+      <rect x="52" y="42" width="536" height="350" rx="7" fill="url(#mg-glare)" pointer-events="none"/>
+      <rect x="52" y="42" width="536" height="350" rx="7"
+        fill="none" stroke="rgba(0,0,0,.55)" stroke-width="10" pointer-events="none"/>
+
+      <rect x="280" y="416" width="80" height="10" rx="3" fill="#1e2028" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+    </svg>
+  </div>
+  </div>
+
+  <!-- SECTION 1 — Microcontroller BOARD -->
+  <div id="chip-panel" class="sec-panel" role="region" aria-label="Projects section">
+  <div id="chip">
+    <svg id="chip-svg" viewBox="-50 15 1040 500" xmlns="http://www.w3.org/2000/svg" overflow="visible" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="esp-pcb" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0e1f14"/>
+          <stop offset="100%" stop-color="#091509"/>
+        </linearGradient>
+        <linearGradient id="esp-chip-bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#1a1030"/>
+          <stop offset="100%" stop-color="#0f0820"/>
+        </linearGradient>
+        <linearGradient id="esp-usb" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#2a2a2a"/>
+          <stop offset="100%" stop-color="#1a1a1a"/>
+        </linearGradient>
+        <filter id="esp-glow-p">
+          <feGaussianBlur stdDeviation="2.5" result="b"/>
+          <feComposite in="SourceGraphic" in2="b" operator="over"/>
+        </filter>
+      </defs>
+
+      <!-- Board shadow -->
+      <rect x="12" y="16" width="936" height="492" rx="12" fill="rgba(0,0,0,.5)"/>
+
+      <!-- PCB board body -->
+      <rect x="8" y="12" width="936" height="492" rx="10" fill="url(#esp-pcb)" stroke="#1a3a1e" stroke-width="2"/>
+
+      <!-- PCB edge highlights -->
+      <rect x="9" y="13" width="934" height="3" rx="2" fill="rgba(255,255,255,.04)"/>
+      <rect x="9" y="13" width="3" height="390" rx="2" fill="rgba(255,255,255,.03)"/>
+
+      <!-- Silk-screen board outline -->
+      <rect x="18" y="22" width="916" height="472" rx="6" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1" stroke-dasharray="4 3"/>
+
+      <!-- PCB trace grid -->
+      <g stroke="rgba(0,200,80,.04)" stroke-width=".8">
+        <line x1="8" y1="80"  x2="944" y2="80"/>
+        <line x1="8" y1="160" x2="944" y2="160"/>
+        <line x1="8" y1="240" x2="944" y2="240"/>
+        <line x1="8" y1="320" x2="944" y2="320"/>
+        <line x1="120" y1="12" x2="120" y2="404"/>
+        <line x1="240" y1="12" x2="240" y2="404"/>
+        <line x1="360" y1="12" x2="360" y2="404"/>
+        <line x1="440" y1="12" x2="440" y2="404"/>
+        <line x1="640" y1="12" x2="640" y2="404"/>
+        <line x1="760" y1="12" x2="760" y2="404"/>
+        <line x1="880" y1="12" x2="880" y2="404"/>
+      </g>
+
+      <!-- GPIO pin headers left -->
+      <g id="gpio-left">
+        <rect x="8" y="55" width="18" height="285" rx="3" fill="#0a1a0c" stroke="rgba(0,200,80,.2)" stroke-width=".8"/>
+        <g fill="#c0a060" stroke="rgba(0,0,0,.4)" stroke-width=".5">
+          <rect x="10" y="60"  width="14" height="11" rx="1.5"/>
+          <rect x="10" y="75"  width="14" height="11" rx="1.5"/>
+          <rect x="10" y="90"  width="14" height="11" rx="1.5"/>
+          <rect x="10" y="105" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="120" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="135" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="150" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="165" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="180" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="195" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="210" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="225" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="240" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="255" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="270" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="285" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="300" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="315" width="14" height="11" rx="1.5"/>
+          <rect x="10" y="330" width="14" height="11" rx="1.5"/>
+        </g>
+        <g font-family="Space Grotesk,monospace" font-size="5.5" fill="rgba(255,255,255,.22)" text-anchor="start">
+          <text x="28" y="69">3V3</text>
+          <text x="28" y="84">GND</text>
+          <text x="28" y="99">IO4</text>
+          <text x="28" y="114">IO5</text>
+          <text x="28" y="129">IO6</text>
+          <text x="28" y="144">IO7</text>
+          <text x="28" y="159">IO15</text>
+          <text x="28" y="174">IO16</text>
+          <text x="28" y="189">IO17</text>
+          <text x="28" y="204">IO18</text>
+          <text x="28" y="219">IO8</text>
+          <text x="28" y="234">IO19</text>
+          <text x="28" y="249">IO20</text>
+          <text x="28" y="264">IO3</text>
+          <text x="28" y="279">IO46</text>
+          <text x="28" y="294">IO9</text>
+          <text x="28" y="309">IO10</text>
+          <text x="28" y="324">IO11</text>
+          <text x="28" y="339">GND</text>
+        </g>
+      </g>
+
+      <!-- GPIO pin headers right -->
+      <g id="gpio-right">
+        <rect x="926" y="55" width="18" height="285" rx="3" fill="#0a1a0c" stroke="rgba(0,200,80,.2)" stroke-width=".8"/>
+        <g fill="#c0a060" stroke="rgba(0,0,0,.4)" stroke-width=".5">
+          <rect x="928" y="60"  width="14" height="11" rx="1.5"/>
+          <rect x="928" y="75"  width="14" height="11" rx="1.5"/>
+          <rect x="928" y="90"  width="14" height="11" rx="1.5"/>
+          <rect x="928" y="105" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="120" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="135" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="150" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="165" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="180" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="195" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="210" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="225" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="240" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="255" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="270" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="285" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="300" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="315" width="14" height="11" rx="1.5"/>
+          <rect x="928" y="330" width="14" height="11" rx="1.5"/>
+        </g>
+        <g font-family="Space Grotesk,monospace" font-size="5.5" fill="rgba(255,255,255,.22)" text-anchor="end">
+          <text x="924" y="69">5V</text>
+          <text x="924" y="84">GND</text>
+          <text x="924" y="99">IO36</text>
+          <text x="924" y="114">IO35</text>
+          <text x="924" y="129">IO0</text>
+          <text x="924" y="144">IO45</text>
+          <text x="924" y="159">IO48</text>
+          <text x="924" y="174">IO47</text>
+          <text x="924" y="189">IO21</text>
+          <text x="924" y="204">IO14</text>
+          <text x="924" y="219">IO13</text>
+          <text x="924" y="234">IO12</text>
+          <text x="924" y="249">IO11</text>
+          <text x="924" y="264">IO10</text>
+          <text x="924" y="279">IO9</text>
+          <text x="924" y="294">IO8</text>
+          <text x="924" y="309">IO7</text>
+          <text x="924" y="324">IO6</text>
+          <text x="924" y="339">GND</text>
+        </g>
+      </g>
+
+      <!-- WiFi/BT antenna trace -->
+      <g stroke="rgba(0,200,80,.35)" stroke-width="1.2" fill="none">
+        <polyline points="830,13 830,28 845,28 845,18 860,18 860,28 875,28 875,18 890,18 890,28 905,28 905,18 920,18 920,28"/>
+        <line x1="830" y1="13" x2="830" y2="42"/>
+      </g>
+      <text x="862" y="42" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="6" fill="rgba(0,200,80,.4)" letter-spacing="1.5">2.4GHz ANT</text>
+
+      <!-- USB-C connector -->
+      <rect x="440" y="490" width="72" height="22" rx="5" fill="url(#esp-usb)" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
+      <rect x="448" y="494" width="56" height="14" rx="3" fill="#111" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+      <rect x="462" y="497" width="28" height="8" rx="2" fill="#1e1e1e" stroke="rgba(255,255,255,.12)" stroke-width=".5"/>
+      <text x="476" y="488" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="6" fill="rgba(255,255,255,.2)" letter-spacing="1">USB-C</text>
+
+      <!-- BOOT + RESET buttons -->
+      <rect x="280" y="480" width="36" height="18" rx="4" fill="#0a1a0c" stroke="rgba(0,200,80,.3)" stroke-width="1"/>
+      <rect x="286" y="483" width="24" height="12" rx="2.5" fill="#0d240f" stroke="rgba(0,200,80,.4)" stroke-width=".8"/>
+      <text x="298" y="490" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="5.5" fill="rgba(0,200,80,.6)" letter-spacing=".5">BOOT</text>
+
+      <rect x="336" y="480" width="36" height="18" rx="4" fill="#1a0a0a" stroke="rgba(200,80,80,.3)" stroke-width="1"/>
+      <rect x="342" y="483" width="24" height="12" rx="2.5" fill="#240d0d" stroke="rgba(200,80,80,.4)" stroke-width=".8"/>
+      <text x="354" y="490" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="5.5" fill="rgba(200,80,80,.6)" letter-spacing=".5">RST</text>
+
+      <!-- Status LEDs -->
+      <circle cx="580" cy="490" r="5" fill="#cc3333" opacity=".85">
+        <animate attributeName="opacity" values=".85;1;.85" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <text x="580" y="484" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="5" fill="rgba(200,80,80,.5)">PWR</text>
+
+      <circle cx="600" cy="490" r="5" fill="#3377ff" opacity=".6">
+        <animate attributeName="opacity" values=".2;.8;.2" dur="1.4s" repeatCount="indefinite"/>
+      </circle>
+      <text x="600" y="484" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="5" fill="rgba(80,140,255,.5)">IO</text>
+
+      <circle cx="620" cy="490" r="5" fill="#00cc66" opacity=".4">
+        <animate attributeName="opacity" values=".1;.9;.1" dur=".6s" repeatCount="indefinite"/>
+      </circle>
+      <text x="620" y="484" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="5" fill="rgba(0,200,80,.5)">TX</text>
+
+      <!-- Header text -->
+      <rect x="54" y="58" width="840" height="55" rx="4" fill="rgba(0,0,0,.35)" stroke="rgba(124,58,237,.2)" stroke-width="1"/>
+      <text x="74" y="82" font-family="Pilcrow Rounded,sans-serif" font-size="20" font-weight="800" fill="rgba(255,255,255,.85)" letter-spacing=".5">At Olin College, I've gained experience and guidance from advisors to ensure best technical</text>
+      <text x="74" y="100" font-family="Pilcrow Rounded,sans-serif" font-size="20" font-weight="800" fill="rgba(255,255,255,.85)" letter-spacing=".5">practices, work through troubleshooting, and mentorship for career readiness skills.</text>
+
+      <line x1="473" y1="114" x2="473" y2="473" stroke="rgba(124,58,237,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+
+      <!-- KEY PROJECTS — left panel (6 cards) -->
+      <text x="68" y="145" font-family="Space Grotesk,monospace" font-size="15" fill="rgba(124,58,237,.55)" letter-spacing="1.5">KEY PROJECTS</text>
+      <rect x="54" y="125" width="405" height="345" rx="4" fill="rgba(0,0,0,.25)" stroke="rgba(124,58,237,.14)" stroke-width="1"/>
+      <foreignObject x="54" y="150" width="405" height="315">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="esp-wrap">
+          <div class="esp-cards" id="key-cards-el">
+
+            <div class="esp-card pcard" tabindex="0" role="button" aria-haspopup="dialog" data-tags="" data-idx="0">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Firmware for Robotics Independent Study</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Real-time control</span><span class="esp-card-tag">Embedded Systems</span><span class="esp-card-tag">C and C++</span></div>
+            </div>
+
+            <div class="esp-card pcard" tabindex="0" role="button" aria-haspopup="dialog" data-tags="ROS2 Kalman Python Multi-Agent" data-idx="1">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Multi-Robot State Estimator</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Navigation</span><span class="esp-card-tag">Multi-Robot</span><span class="esp-card-tag">Robot Perception</span><span class="esp-card-tag">Object Oriented Python</span></div>
+            </div>
+
+            <div class="esp-card pcard" tabindex="0" role="button" aria-haspopup="dialog" data-tags="ROS2 SLAM STM32 Swarm" data-idx="2">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Swarm Robotics Independent Study</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Navigation</span><span class="esp-card-tag">Centralized/Decentralized Control</span><span class="esp-card-tag">Robot Perception</span></div>
+            </div>
+
+            <div class="esp-card pcard" tabindex="0" role="button" aria-haspopup="dialog" data-tags="Embedded C I2C PID Tactile STM32" data-idx="3">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Wearable Mechatronics Student Academic Grant</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Embedded System</span><span class="esp-card-tag">System Integration</span><span class="esp-card-tag">Long-term Project</span></div>
+            </div>
+
+            <div class="esp-card pcard" tabindex="0" role="button" aria-haspopup="dialog" data-tags="OpenCV CUDA Kalman ROS2 Jetson" data-idx="4">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Image to Text to Speech</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Digital Filtering</span><span class="esp-card-tag">Image Processing</span><span class="esp-card-tag">MATLAB</span></div>
+            </div>
+
+            <div class="esp-card pcard" tabindex="0" role="button" aria-haspopup="dialog" data-tags="ROS2 PX4 LiDAR Aerospace" data-idx="5">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Robot Drawing Arm</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Object Oriented Python</span><span class="esp-card-tag">Actuation</span><span class="esp-card-tag">IK Solver</span></div>
+            </div>
+
+          </div>
+        </div>
+      </foreignObject>
+
+      <!-- SUPPLEMENTAL — right panel (8 cards, filterable) -->
+      <text x="498" y="145" font-family="Space Grotesk,monospace" font-size="15" fill="rgba(124,58,237,.55)" letter-spacing="1.5">SUPPLEMENTAL</text>
+      <rect x="482" y="125" width="410" height="345" rx="4" fill="rgba(0,0,0,.25)" stroke="rgba(124,58,237,.14)" stroke-width="1"/>
+      <foreignObject x="484" y="147" width="405" height="315">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="esp-wrap">
+          <div class="esp-filters" id="esp-filters-el">
+            <button class="esp-filter active" data-filter="all" type="button">All</button>
+            <button class="esp-filter" data-filter="Stake" type="button">Real Stakeholders</button>
+            <button class="esp-filter" data-filter="Res" type="button">Research</button>
+            <button class="esp-filter" data-filter="Soft" type="button">Software</button>
+            <button class="esp-filter" data-filter="Emb" type="button">Embedded Systems</button>
+            <button class="esp-filter" data-filter="Hard" type="button">Hardware</button>
+            <button class="esp-filter" data-filter="Fab" type="button">Fabrication</button>
+          </div>
+          <div class="esp-cards" id="esp-cards-el">
+
+            <div class="esp-card supp-card" tabindex="0" role="button" aria-haspopup="dialog" data-tags="Emb Soft Res" data-idx="6">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Inverse Pendulum Balancing Robot</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">PID Control</span><span class="esp-card-tag">Real-Time Adaptivity</span><span class="esp-card-tag">Embedded System</span><span class="esp-card-tag">Simulink</span></div>
+            </div>
+
+            <div class="esp-card supp-card" tabindex="0" role="button" aria-haspopup="dialog" data-tags="Stake Soft Res" data-idx="7">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Fault Detector for Building Automation System</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Real-time</span><span class="esp-card-tag">R Language</span><span class="esp-card-tag">Real Data</span></div>
+            </div>
+
+            <div class="esp-card supp-card" tabindex="0" role="button" aria-haspopup="dialog" data-tags="Hard Fab Emb" data-idx="8">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Kinetic Marble Sculpture</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Actuation</span><span class="esp-card-tag">Mechanical Design</span><span class="esp-card-tag">Fabrication</span></div>
+            </div>
+
+            <div class="esp-card supp-card" tabindex="0" role="button" aria-haspopup="dialog" data-tags="Stake Res Soft" data-idx="9">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Astronomer Glass Plate Matching</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Jupyter Notebook</span><span class="esp-card-tag">Real Data</span><span class="esp-card-tag">Python</span></div>
+            </div>
+
+            <div class="esp-card supp-card" tabindex="0" role="button" aria-haspopup="dialog" data-tags="Emb Soft" data-idx="10">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Robot Descent Path Optimization</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Embedded System</span><span class="esp-card-tag">MATLAB</span><span class="esp-card-tag">Gradient Descent</span></div>
+            </div>
+
+            <div class="esp-card supp-card" tabindex="0" role="button" aria-haspopup="dialog" data-tags="Emb Hard Fab" data-idx="11">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Radar System Design</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Electrical Design</span><span class="esp-card-tag">Analog Signal Processing</span><span class="esp-card-tag">Radar</span></div>
+            </div>
+            <div class="esp-card supp-card" tabindex="0" role="button" aria-haspopup="dialog" data-tags="Fab Res Stake" data-idx="12">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Dearborn STEM Academy Engineering Initative</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Technical Communication</span><span class="esp-card-tag">Project Management</span></div>
+            </div>
+            <div class="esp-card supp-card" tabindex="0" role="button" aria-haspopup="dialog" data-tags="Fab Res Hard" data-idx="13">
+              <div class="esp-card-hint">↗ expand</div>
+              <div class="esp-card-name">Electroplated 3d Print Strength Test</div>
+              <div class="esp-card-tags"><span class="esp-card-tag">Electroplating</span><span class="esp-card-tag">Tensile Testing</span><span class="esp-card-tag">Material Selection</span></div>
+            </div>
+
+          </div>
+        </div>
+      </foreignObject>
+
+      <!-- corner mounting holes -->
+      <circle cx="26" cy="30" r="7" fill="#060e07" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      <circle cx="26" cy="30" r="3" fill="#040a05"/>
+      <circle cx="926" cy="30" r="7" fill="#060e07" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      <circle cx="926" cy="30" r="3" fill="#040a05"/>
+      <circle cx="26" cy="493" r="7" fill="#060e07" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      <circle cx="26" cy="493" r="3" fill="#040a05"/>
+      <circle cx="926" cy="493" r="7" fill="#060e07" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      <circle cx="926" cy="493" r="3" fill="#040a05"/>
+    </svg>
+  </div>
+</div>
+
+  <!-- SECTION 2 — SENSOR BREAKOUT BOARD -->
+  <div id="sensor-panel" class="sec-panel" role="region" aria-label="Education section">
+  <div id="sensor">
+    <svg id="sensor-svg" viewBox="-100 10 740 390" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sens-pcb" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#0a1a24"/>
+          <stop offset="100%" stop-color="#061018"/>
+        </linearGradient>
+        <linearGradient id="sens-ic" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="#131a24"/>
+          <stop offset="100%" stop-color="#0a1118"/>
+        </linearGradient>
+        <linearGradient id="sens-copper" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#b87333"/>
+          <stop offset="100%" stop-color="#8a5524"/>
+        </linearGradient>
+      </defs>
+
+      <rect x="10" y="14" width="522" height="368" rx="10" fill="rgba(0,0,0,.5)"/>
+      <rect x="6" y="10" width="522" height="368" rx="8" fill="url(#sens-pcb)" stroke="#0a2035" stroke-width="2"/>
+      <rect x="7" y="11" width="520" height="3" rx="2" fill="rgba(255,255,255,.04)"/>
+      <rect x="16" y="20" width="502" height="348" rx="5" fill="none" stroke="rgba(0,212,255,.07)" stroke-width="1" stroke-dasharray="5 4"/>
+
+      <g id="pads-left">
+        <rect x="6"  y="46" width="22" height="14" rx="2" fill="url(#sens-copper)" stroke="rgba(0,0,0,.3)" stroke-width=".5"/>
+        <rect x="6"  y="66" width="22" height="14" rx="2" fill="url(#sens-copper)" stroke="rgba(0,0,0,.3)" stroke-width=".5"/>
+        <rect x="6"  y="86" width="22" height="14" rx="2" fill="url(#sens-copper)" stroke="rgba(0,0,0,.3)" stroke-width=".5"/>
+        <rect x="6" y="106" width="22" height="14" rx="2" fill="url(#sens-copper)" stroke="rgba(0,0,0,.3)" stroke-width=".5"/>
+        <rect x="6" y="126" width="22" height="14" rx="2" fill="url(#sens-copper)" stroke="rgba(0,0,0,.3)" stroke-width=".5"/>
+        <rect x="6" y="146" width="22" height="14" rx="2" fill="url(#sens-copper)" stroke="rgba(0,0,0,.3)" stroke-width=".5"/>
+        <g font-family="Space Grotesk,monospace" font-size="5.5" fill="rgba(255,255,255,.28)" text-anchor="start">
+          <text x="31" y="56" >VCC</text>
+          <text x="31" y="76" >GND</text>
+          <text x="31" y="96" >SCL</text>
+          <text x="31" y="116">SDA</text>
+          <text x="31" y="136">SDO</text>
+          <text x="31" y="156">CS</text>
+        </g>
+        <text x="8" y="175" font-family="Space Grotesk,monospace" font-size="5.5" fill="rgba(0,212,255,.3)" letter-spacing=".5">I²C / SPI</text>
+      </g>
+
+      <g id="wire-leads" stroke-width="3" stroke-linecap="round">
+        <line x1="528" y1="52"  x2="560" y2="52"  stroke="#cc3333"/>
+        <line x1="528" y1="72"  x2="560" y2="72"  stroke="#222"/>
+        <line x1="528" y1="92"  x2="560" y2="92"  stroke="#ccaa00"/>
+        <line x1="528" y1="112" x2="560" y2="112" stroke="#3366cc"/>
+        <g stroke-width="6" stroke-linecap="butt">
+          <line x1="528" y1="52"  x2="532" y2="52"  stroke="#772222"/>
+          <line x1="528" y1="72"  x2="532" y2="72"  stroke="#111"/>
+          <line x1="528" y1="92"  x2="532" y2="92"  stroke="#886600"/>
+          <line x1="528" y1="112" x2="532" y2="112" stroke="#224488"/>
+        </g>
+        <g fill="url(#sens-copper)" stroke="rgba(0,0,0,.3)" stroke-width=".5">
+          <rect x="506" y="45"  width="22" height="14" rx="2"/>
+          <rect x="506" y="65"  width="22" height="14" rx="2"/>
+          <rect x="506" y="85"  width="22" height="14" rx="2"/>
+          <rect x="506" y="105" width="22" height="14" rx="2"/>
+        </g>
+      </g>
+
+      <g fill="#1a2830" stroke="rgba(0,212,255,.2)" stroke-width=".8">
+        <rect x="54"  y="22" width="10" height="6" rx="1"/>
+        <rect x="68"  y="22" width="10" height="6" rx="1"/>
+        <rect x="82"  y="22" width="10" height="6" rx="1"/>
+        <rect x="96"  y="22" width="10" height="6" rx="1"/>
+        <rect x="110" y="22" width="10" height="6" rx="1"/>
+      </g>
+      <text x="80" y="19" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="5" fill="rgba(0,212,255,.2)" letter-spacing="1">100nF BYPASS</text>
+
+      <rect x="54" y="340" width="40" height="22" rx="3" fill="#0f1e2c" stroke="rgba(0,212,255,.3)" stroke-width="1"/>
+      <text x="74" y="354" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="6" fill="rgba(0,212,255,.5)">AMS1117</text>
+
+      <rect x="64" y="48" width="80" height="80" rx="5" fill="url(#sens-ic)" stroke="rgba(0,212,255,.35)" stroke-width="1.2"/>
+      <text x="104" y="80"  text-anchor="middle" font-family="Space Grotesk,monospace" font-size="7.5" fill="rgba(0,212,255,.4)" letter-spacing="1">BOSCH</text>
+      <text x="104" y="93"  text-anchor="middle" font-family="Space Grotesk,monospace" font-size="9"   fill="rgba(0,212,255,.6)" font-weight="700">BME280</text>
+      <text x="104" y="106" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="5.5" fill="rgba(0,212,255,.3)">Temp/Hum/Press</text>
+      <g fill="#b87333" stroke="rgba(0,0,0,.3)" stroke-width=".4">
+        <rect x="66"  y="50"  width="8" height="5" rx="1"/>
+        <rect x="78"  y="50"  width="8" height="5" rx="1"/>
+        <rect x="90"  y="50"  width="8" height="5" rx="1"/>
+        <rect x="102" y="50"  width="8" height="5" rx="1"/>
+        <rect x="66"  y="121" width="8" height="5" rx="1"/>
+        <rect x="78"  y="121" width="8" height="5" rx="1"/>
+        <rect x="90"  y="121" width="8" height="5" rx="1"/>
+        <rect x="102" y="121" width="8" height="5" rx="1"/>
+      </g>
+
+      <rect x="64" y="160" width="80" height="80" rx="5" fill="url(#sens-ic)" stroke="rgba(124,58,237,.35)" stroke-width="1.2"/>
+      <text x="104" y="192" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="7.5" fill="rgba(124,58,237,.4)" letter-spacing="1">INVENSENSE</text>
+      <text x="104" y="205" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="9"   fill="rgba(124,58,237,.6)" font-weight="700">MPU-6050</text>
+      <text x="104" y="218" text-anchor="middle" font-family="Space Grotesk,monospace" font-size="5.5" fill="rgba(124,58,237,.3)">6-axis IMU</text>
+      <g fill="#b87333" stroke="rgba(0,0,0,.3)" stroke-width=".4">
+        <rect x="66"  y="162" width="8" height="5" rx="1"/>
+        <rect x="78"  y="162" width="8" height="5" rx="1"/>
+        <rect x="90"  y="162" width="8" height="5" rx="1"/>
+        <rect x="102" y="162" width="8" height="5" rx="1"/>
+        <rect x="66"  y="233" width="8" height="5" rx="1"/>
+        <rect x="78"  y="233" width="8" height="5" rx="1"/>
+        <rect x="90"  y="233" width="8" height="5" rx="1"/>
+        <rect x="102" y="233" width="8" height="5" rx="1"/>
+      </g>
+
+      <g stroke="rgba(0,212,255,.18)" stroke-width="1.2" fill="none">
+        <line x1="64"  y1="53"  x2="28"  y2="53"/>
+        <line x1="64"  y1="68"  x2="28"  y2="68"/>
+        <line x1="64"  y1="83"  x2="28"  y2="83"/>
+        <line x1="64"  y1="98"  x2="28"  y2="98"/>
+      </g>
+
+      <rect x="160" y="28" width="348" height="330" rx="6" fill="rgba(0,0,0,.18)" stroke="rgba(0,212,255,.06)" stroke-width="1"/>
+      <foreignObject x="160" y="32" width="342" height="322">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="sens-wrap">
+          <div class="sens-title">B.S. in Robotic Engineering</div>
+          <div class="sens-note">Completing last semester and graduating Dec 2026</div>
+          <div class="sens-stats">
+            <div class="sens-stat"><div class="sens-num">Olin College of Eng</div><div class="sens-unit">Needham, MA</div></div>
+            <div class="sens-stat"><div class="sens-num">Heriot Watt Uni</div><div class="sens-unit">Study Abroad- Edinburgh, Scotland</div></div>
+            <div class="sens-stat"><div class="sens-num">Johns Hopkins Uni</div><div class="sens-unit">Pre-College Foundations</div></div>
+            <div class="sens-stat"><div class="sens-num">Certifs</div><div class="sens-unit">* Machine Learning- Stanford Online Coursera</div></div>
+          </div>
+          <div class="sens-filters" id="sens-filters-el">
+            <button class="sens-filter active" data-filter="all" type="button">All</button>
+            <button class="sens-filter" data-filter="user" type="button">Users/Stakeholders</button>
+            <button class="sens-filter" data-filter="per" type="button">Perception</button>
+            <button class="sens-filter" data-filter="comp" type="button">Computation-heavy</button>
+            <button class="sens-filter" data-filter="res" type="button">Research Heavy</button>
+            <button class="sens-filter" data-filter="emb" type="button">Embedded</button>
+            <button class="sens-filter" data-filter="hard" type="button">Hardware Heavy</button>
+            <button class="sens-filter" data-filter="sys-int" type="button">System Integration</button>
+            <button class="sens-filter" data-filter="found" type="button">Foundational</button>
+          </div>
+          <div class="sens-courses" id="sens-courses-el">
+            <a href="https://probrobo26.github.io" class="sens-course" data-tags="per comp res">
+              <span class="sens-course-name">Probabilistic Robotics</span>
+              <span class="sens-course-desc">Robot uncertainity and dynamic environments</span>
+            </a>
+            <a href="https://curriculum.hw.ac.uk/coursedetails/B38MV?termcode=202526&programmeCode=B361-RME" class="sens-course" data-tags="comp per res hard sys-int emb">
+              <span class="sens-course-name">Mechatronic Systems (Heriot Watt)</span>
+              <span class="sens-course-desc">Mechanical, electrical, and software integration</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/2000/engx2134" class="sens-course" data-tags="sys-int res comp emb">
+              <span class="sens-course-name">Engineering Systems Analysis</span>
+              <span class="sens-course-desc">Controls and system integration</span>
+            </a>
+            <a href="https://funrobo-olin.notion.site" class="sens-course" data-tags="sys-int comp emb">
+              <span class="sens-course-name">Fundamentals of Robotics</span>
+              <span class="sens-course-desc">Robot actuation</span>
+            </a>
+            <a href="https://comprobo24.github.io" class="sens-course" data-tags="per comp found">
+              <span class="sens-course-name">Computational Intro to Robotics</span>
+              <span class="sens-course-desc">Intro to ROS2 and robotic perception</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/3000/engr3415" class="sens-course" data-tags="comp res">
+              <span class="sens-course-name">Digital Signal Processing</span>
+              <span class="sens-course-desc">Filtering and modifying image and audio signals</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/sci-science/2000/sci2136" class="sens-course" data-tags="res comp">
+              <span class="sens-course-name">Astronomy and Statistics</span>
+              <span class="sens-course-desc">Computational statistical analysis of NASA solar system and astrodynamics</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/1000/engr1125" class="sens-course" data-tags="hard found">
+              <span class="sens-course-name">Intro to Sensors, Instrumentation, and Measurement</span>
+              <span class="sens-course-desc">Electrical design</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/sci-science/1000/sci1111" class="sens-course" data-tags="comp found res">
+              <span class="sens-course-name">Modeling and Simulation of the Physical World</span>
+              <span class="sens-course-desc">Computational system representation</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/4000/engr4290" class="sens-course" data-tags="res user">
+              <span class="sens-course-name">DJS/ADE Capstone</span>
+              <span class="sens-course-desc">Co-designing w/ real people and a social lens</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/2000/engr2250" class="sens-course" data-tags="res user">
+              <span class="sens-course-name">Collaborative Design</span>
+              <span class="sens-course-desc">User-oriented concept, product and service design</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/2000/engr2160" class="sens-course" data-tags="res user">
+              <span class="sens-course-name">Designing Resources for Empowerment</span>
+              <span class="sens-course-desc">Examine and discuss inequalities while co-designing with underserved communities</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/sci-science/1000/sci1410" class="sens-course" data-tags="res">
+              <span class="sens-course-name">Materials Science and Solid State Chemistry</span>
+              <span class="sens-course-desc">Material selection and integration; lab-based</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/2000/engr2330" class="sens-course" data-tags="found hard">
+              <span class="sens-course-name">Intro to Mechanical Prototyping</span>
+              <span class="sens-course-desc">Mechanical system design</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/1000/engr1200" class="sens-course" data-tags="res found hard">
+              <span class="sens-course-name">Design Nature</span>
+              <span class="sens-course-desc">Bio-inspired mechanical design</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/sci-science/2000/sci2214" class="sens-course" data-tags="res">
+              <span class="sens-course-name">Microbial Diversity</span>
+              <span class="sens-course-desc">Engineering and entrepreneurial use of microbes</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/2000/engx2011" class="sens-course" data-tags="found">
+              <span class="sens-course-name">Quantitative Engineering Analysis 3</span>
+              <span class="sens-course-desc">ODEs and equations of motion applied to engineering projects</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/2000/engx2006" class="sens-course" data-tags="found">
+              <span class="sens-course-name">Quantitative Engineering Analysis 2</span>
+              <span class="sens-course-desc">Multivariable calculus applied to engineering projects</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/2000/engx2000" class="sens-course" data-tags="found">
+              <span class="sens-course-name">Quantitative Engineering Analysis 1</span>
+              <span class="sens-course-desc">Linear algebra applied to engineering projects</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/ahse-arts-hum-soc-sci-entrepr/1000/ahse1515" class="sens-course" data-tags="user res">
+              <span class="sens-course-name">Products and Markets</span>
+              <span class="sens-course-desc">Entrepreneurship and engineering</span>
+            </a>
+            <a href="https://ei.jhu.edu/programs/bmei/" class="sens-course" data-tags="res hard">
+              <span class="sens-course-name">JHU Biomedical Engineering Innovation</span>
+              <span class="sens-course-desc">Modeling biological systems and designing experiments to address real-world health challenges</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/3000/engr3252" class="sens-course" data-tags="user res hard emb comp">
+              <span class="sens-course-name">Technology, Accessibility, and Design (future)</span>
+              <span class="sens-course-desc">Co-design and discussion of technologies mediating access with a community partner</span>
+            </a>
+            <a href="https://olin.smartcatalogiq.com/en/2025-26/catalog/courses-credits-hours/engr-engineering/3000/engr3260" class="sens-course" data-tags="controls">
+              <span class="sens-course-name">Design for Manufacturing (future)</span>
+              <span class="sens-course-desc">Redesigning mechanical, electronic, and software components for cost efficiency, reliability, and scale</span>
+            </a>
+          </div>
+        </div>
+      </foreignObject>
+
+      <circle cx="20"  cy="24"  r="6" fill="#040c12" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+      <circle cx="20"  cy="24"  r="2.5" fill="#020a10"/>
+      <circle cx="520" cy="24"  r="6" fill="#040c12" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+      <circle cx="520" cy="24"  r="2.5" fill="#020a10"/>
+      <circle cx="20"  cy="371" r="6" fill="#040c12" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+      <circle cx="20"  cy="371" r="2.5" fill="#020a10"/>
+      <circle cx="520" cy="371" r="6" fill="#040c12" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+      <circle cx="520" cy="371" r="2.5" fill="#020a10"/>
+    </svg>
+  </div>
+  </div>
+
+  <!-- SECTION 3 — ROVER ROBOT -->
+  <div id="robot-panel" class="sec-panel" role="region" aria-label="Contact section">
+  <div id="robot">
+    <svg id="robot-svg-wrap" viewBox="0 50 760 520" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rbg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#0c1620"/>
+          <stop offset="100%" stop-color="#152030"/>
+        </linearGradient>
+        <linearGradient id="whl" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#1e3040"/>
+          <stop offset="100%" stop-color="#0a1520"/>
+        </linearGradient>
+        <linearGradient id="panelg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#0b1e30"/>
+          <stop offset="100%" stop-color="#071420"/>
+        </linearGradient>
+        <linearGradient id="suspen" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#162535"/>
+          <stop offset="100%" stop-color="#0c1a28"/>
+        </linearGradient>
+      </defs>
+
+      <ellipse cx="370" cy="520" rx="330" ry="14" fill="rgba(0,0,0,.45)"/>
+
+      <rect x="118" y="410" width="30" height="70" rx="6" fill="url(#suspen)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
+      <rect x="572" y="410" width="30" height="70" rx="6" fill="url(#suspen)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
+
+      <ellipse cx="133" cy="455" rx="62" ry="62" fill="url(#whl)" stroke="rgba(0,212,255,.38)" stroke-width="2"/>
+      <ellipse cx="133" cy="455" rx="44" ry="44" fill="#0a131e" stroke="rgba(0,212,255,.22)" stroke-width="1.2"/>
+      <ellipse cx="133" cy="455" rx="22" ry="22" fill="#101d2c" stroke="rgba(0,212,255,.4)"  stroke-width="1.5"/>
+      <ellipse cx="133" cy="455" rx="8"  ry="8"  fill="rgba(0,212,255,.25)"/>
+      <g stroke="rgba(0,212,255,.15)" stroke-width="1.2">
+        <line x1="133" y1="393" x2="133" y2="517"/>
+        <line x1="71"  y1="455" x2="195" y2="455"/>
+        <line x1="89"  y1="411" x2="177" y2="499"/>
+        <line x1="177" y1="411" x2="89"  y2="499"/>
+      </g>
+      <g stroke="rgba(0,212,255,.1)" stroke-width="3" fill="none">
+        <path d="M75,422 A62,62 0 0,1 133,393"/>
+        <path d="M133,393 A62,62 0 0,1 191,422"/>
+        <path d="M195,455 A62,62 0 0,1 191,488"/>
+        <path d="M75,488 A62,62 0 0,1 75,422"/>
+      </g>
+
+      <ellipse cx="587" cy="455" rx="62" ry="62" fill="url(#whl)" stroke="rgba(0,212,255,.38)" stroke-width="2"/>
+      <ellipse cx="587" cy="455" rx="44" ry="44" fill="#0a131e" stroke="rgba(0,212,255,.22)" stroke-width="1.2"/>
+      <ellipse cx="587" cy="455" rx="22" ry="22" fill="#101d2c" stroke="rgba(0,212,255,.4)"  stroke-width="1.5"/>
+      <ellipse cx="587" cy="455" rx="8"  ry="8"  fill="rgba(0,212,255,.25)"/>
+      <g stroke="rgba(0,212,255,.15)" stroke-width="1.2">
+        <line x1="587" y1="393" x2="587" y2="517"/>
+        <line x1="525" y1="455" x2="649" y2="455"/>
+        <line x1="543" y1="411" x2="631" y2="499"/>
+        <line x1="631" y1="411" x2="543" y2="499"/>
+      </g>
+
+      <rect x="90" y="188" width="560" height="268" rx="16" fill="url(#rbg)" stroke="rgba(0,212,255,.45)" stroke-width="2"/>
+      <rect x="91" y="189" width="558" height="6" rx="8" fill="rgba(255,255,255,.04)"/>
+      <g stroke="rgba(0,212,255,.08)" stroke-width="1">
+        <line x1="108" y1="200" x2="108" y2="446"/>
+        <line x1="116" y1="200" x2="116" y2="446"/>
+        <line x1="124" y1="200" x2="124" y2="446"/>
+        <line x1="132" y1="200" x2="132" y2="446"/>
+      </g>
+
+      <rect x="200" y="192" width="240" height="14" rx="3" fill="rgba(0,212,255,.04)" stroke="rgba(0,212,255,.18)" stroke-width=".8"/>
+      <g>
+        <circle cx="228" cy="199" r="4" fill="rgba(0,212,255,.5)"><animate attributeName="opacity" values=".3;1;.3" dur="2.2s" repeatCount="indefinite"/></circle>
+        <circle cx="252" cy="199" r="4" fill="rgba(0,212,255,.5)"><animate attributeName="opacity" values=".3;1;.3" dur="2.2s" begin=".4s" repeatCount="indefinite"/></circle>
+        <circle cx="276" cy="199" r="4" fill="rgba(0,255,136,.5)"><animate attributeName="opacity" values=".3;1;.3" dur="2.2s" begin=".8s" repeatCount="indefinite"/></circle>
+        <circle cx="300" cy="199" r="4" fill="rgba(0,255,136,.5)"><animate attributeName="opacity" values=".3;1;.3" dur="2.2s" begin="1.2s" repeatCount="indefinite"/></circle>
+        <circle cx="324" cy="199" r="4" fill="rgba(124,58,237,.6)"><animate attributeName="opacity" values=".3;1;.3" dur="2.2s" begin="1.6s" repeatCount="indefinite"/></circle>
+        <circle cx="348" cy="199" r="4" fill="rgba(255,100,50,.5)"><animate attributeName="opacity" values=".3;1;.3" dur="2.2s" begin="2s" repeatCount="indefinite"/></circle>
+        <circle cx="372" cy="199" r="4" fill="rgba(0,212,255,.5)"><animate attributeName="opacity" values=".3;1;.3" dur="2.2s" begin=".6s" repeatCount="indefinite"/></circle>
+        <circle cx="396" cy="199" r="4" fill="rgba(0,212,255,.5)"><animate attributeName="opacity" values=".3;1;.3" dur="2.2s" begin="1s" repeatCount="indefinite"/></circle>
+      </g>
+      <rect x="655" y="160" width="5" height="72" rx="2.5" fill="none" stroke="rgba(0,212,255,.85)" stroke-width="2.5"/>
+
+      <circle cx="660" cy="115" r="52" fill="#07121a" stroke="rgba(0,212,255,.5)" stroke-width="1.8"/>
+      <circle cx="660" cy="115" r="38" fill="#050e15" stroke="rgba(0,212,255,.28)" stroke-width="1"/>
+      <circle cx="660" cy="115" r="22" fill="rgba(0,212,255,.08)"/>
+      <circle cx="660" cy="115" r="11" fill="rgba(0,212,255,.35)">
+        <animate attributeName="fill-opacity" values=".35;.8;.35" dur="2.8s" repeatCount="indefinite"/>
+      </circle>
+      <line x1="660" y1="115" x2="660" y2="65" stroke="rgba(0,212,255,.75)" stroke-width="2.5" stroke-linecap="round">
+        <animateTransform attributeName="transform" type="rotate" from="0 660 115" to="360 660 115" dur="1.6s" repeatCount="indefinite"/>
+      </line>
+      <circle cx="660" cy="115" r="52" fill="none" stroke="rgba(0,212,255,.06)" stroke-width="6"/>
+
+      <foreignObject x="167" y="225" width="2600" height="1620">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="fo-inner">
+          <div class="fo-title">Let's Build Together</div>
+          <div class="fo-row"><span class="fo-lbl">Email</span><span class="fo-val">mmiller@olin.edu</span></div>
+          <div class="fo-row"><span class="fo-lbl">Phone</span><span class="fo-val">830-237-8650</span></div>
+          <div class="fo-row"><span class="fo-lbl">GitHub</span><span class="fo-val">github.com/Smart-coder872</span></div>
+          <div class="fo-row"><span class="fo-lbl">LinkedIn</span><span class="fo-val">https://www.linkedin.com/in/mikaela-miller/</span></div>
+          <div class="fo-avail"><div class="fo-dot"></div>Open to full-time and part-time</div>
+        </div>
+      </foreignObject>
+    </svg>
+  </div>
+  </div>
+
+</main>
+
+<!-- MODAL -->
+<div id="modal-bg"></div>
+<div id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="m-title" aria-describedby="m-body">
+  <button id="modal-close" type="button" aria-label="Close project details">×</button>
+  <div class="mh">
+    <div class="m-tags" id="m-tags"></div>
+    <div class="m-title" id="m-title"></div>
+    <div class="m-role"  id="m-role"></div>
+  </div>
+  <div class="mb" id="m-body"></div>
+</div>
+
+<script>
+(function(){
+
+const PROJECTS=[
+  /* 0 — KEY */
+  {
+    title:'Firmware for Robotics Independent Study',
+    role:'Solo',
+    tags:['Real time control','C++','Embedded Systems','Synchronization','Communication Protocols','Multi core processor','ESP32','Actuation'],
+    overview:'A series of firmware projects for robotics purposes such as actuation and synchronisation',
+    inspiration:'Robots need actuation to move and synchronization for smooth, reliable motion. Thus, both of these topics became my project focus. I wanted to see how my current robotics and firmware knowledge fits together in a whimsical way, by building two playful hardware‑driven projects, a “Simon Says game” and musical stepper motors, that also combine communication and control.',
+    goals:['Build a program for users to play a "Simon Says" game, taking buttons as inputs and LEDs and a display screen as outputs','Take things a step further by building stepper motors that make music and implementing a system to control multiple asynchronous motors in a coordinated way','Explore and implement a communication protocol'],
+    workflow:['Checked that the ESP32 microcontroller could connect and communicate with my PC','Used a circuit simulator to rapidly debug the program, prototype, and then built a physical circuit','Used I²C for the LCD display, which would scroll through options with a toggle module','Integrated tests for communication and code logic to ensure robustness','Created an additional program to take MIDI files and convert notes into frequencies for stepper motors','Integrated RTOS for multitasking, precise timing, and efficient resource management'],
+    takeaways:['Function Balance: The biggest factor that became clear throughout this project was the importance of balancing functions such as response to user input, motor timing, synchronization, and task scheduling for real time interaction and time sensitivity. This probably had the most influence on the resulting system behavior','Efficient hardware-to-software pipeline: I’ve developed strong strategies for ideating hardware-to-software design as well as clear steps to streamline the process. However, I am able to balance this process with flexibility and creativity.'],
+    nextSteps:['Develop C‑based drivers and hardware abstraction layers for motors, sensors, and actuators', 'Explore the purpose and functionality of other communication protocols like SPI and UART']
+  },
+  /* 1 — KEY */
+  {
+    title:'Multi-Robot State Estimator',
+    role:'2-person team',
+    image:'Multi-Agent.png',
+    tags:['Simulation','Kalman Filtering','Object oriented (OOC) python','Multi-Agent','EKF','SLAM'],
+    overview:'Extended a single-agent state estimator into a decentralised multi-robot system using Iterated Extended Kalman Filters.',
+    inspiration:'Multi-robot or multi-agent state estimation is a novel field with potential applications in robotic exploration and search-and-rescue. While I have read and heard about the challenges of groundbreaking research, I wanted to explore this directly. Expanding from Probabilistic Robotics, a recent course I’ve taken, I converted the associated simulator template to a multi-robot state estimation simulator. With guidance from my instructor and collaboration with a peer, I aimed to use the project to strengthen my Python fluency in robotics and improve my approach to debugging and problem solving in multi-agent systems.',
+    goals:['Extend a single-agent estimator into a multi-agent system for decentralized robot communication','Write modular code for scalability and ease of maintenance','Build a more robust simulation and estimation pipeline','Create clear documentation and a comprehensive README for future users'],
+    workflow:['(In class) Given simulator template with file division and organization, within input, src, and output folders and noisy GPS, ultrasonic distance, and odometry sensor measurements', '(In class) Evaluated the equations involved in Kalman filters and Extended Kalman filters using Bayes theorem and probability, getting familiar with each component', '(In class) Implemented functions onto the  barebones simulator to organize, associate, and store the sensor data', '(In class) Implemented Kalman and Extended Kalman filters for state estimation of a robot location and position relative to a landmark', '(In class) Learned about the tradeoffs of using policy iteration vs informative sampling such as Applied A*, RRT, and Monte Carlo methods for Markov Decision Process (MDP) models optimal path planning under uncertainty', '(Expanded) Collaborated with teammate to research decentralized multi‑agent systems from current literature on relative estimation', '(Expanded) Choose a Kalman filter, (Iterated Extended Kalman filter) based on our research and got familiar with the formula', '(Expanded) Modified the single-agent simulator to support multi-agent interaction and both local and relative state estimation', '(Expanded) Validated performance through unit tests measuring localization accuracy, convergence, and computational efficiency', '(Expanded) Implemented logging and visualization tools to compare actual vs. predicted robot states', '(Expanded) Designed verification experiments measuring estimation accuracy, inter-robot consistency, and uncertainty bounds over time and to analyze performance across various noise models', '(Expanded) Redesigned the simulator to be both modular while reducing scaling complexity', '(Expanded) Created a ReadMe and documentation for future users'],
+    takeaways:['Testing Early: Especially when unfamiliar with certain libraries or functions in the code, this is crucial','Modular code: While initially painstaking, this is helpful later for debugging and handoff','Unit tests: Even when a system seems like it is working, unit tests reveal underlying robustness', 'Simplicity to complexity: Things that seem simple can turn out to have many small steps. It’s important to identify when to seek help and to seek it early. It’s also important to consult others when initially scoping the project, especially if it covers a new field.'],
+    nextSteps:['SLAM: We covered this a bit in class but I hope to design EKF-SLAM and Pose-Graph SLAM systems to investigate their trajectory estimation and map generation uses', 'Physical Implementation: I hope to achieve this for more practice', 'Working Styles: I work best alone while my partner works best synchronously. I learned from my project advisor that this was a common workstyle pinch point that teams face. We were able to recognize and make things work where we both thrive']
+  },
+  /* 2 — KEY */
+  {
+    title:'Swarm Robotics Independent Study',
+    role:'2-person team',
+    tags:['Navigation', 'Centralized/decentralized control', 'Robot Perception', 'Multi-agent', 'Algorithm analysis', 'Bio-inspired', 'Object oriented (OOC) python'],
+    overview:'An implementation and comparison of decentralised swarm coordination algorithms',
+    inspiration:'Swarm robotics is a niche area that is fascinating to me for its artistic and mapping purposes. I undertook this because of my goals of groundbreaking robotics research and better understanding research papers. I aimed to learn from current multi-agent robotics research by recreating and identifying edge cases.',
+    goals:['Identify the differences between terminology such as multi-agent systems and swarm systems, centralized and decentralized algorithms, bio inspired vs heuristic algorithms, and types of simulators such as low to high fidelity and physics-based', 'Analyze and understand research papers enough to know how to reproduce the results’, ‘Implement and simulate prior experience and gained knowledge'],
+    workflow:['Decided project directions with teammate such as robot system purpose, software vs hardware focus, budget, resources, and timeline’, ‘Strategized working styles and preferences to ensure a both a healthy and efficient team dynamic', 'Investigated research on decentralized algorithms while partner investigated centralized algorithms', 'Selected algorithms and implement them in ROS2', 'Conducted comparative analysis of algorithmic performance via ROS simulations, evaluating runtime efficiency, reliability, and scalability', 'Analyzed trade‑offs of communication overhead, sensor precision, and computational demands across multi‑agent localization strategies', 'Developed a framework for extending these algorithms to physical robotic platforms in a subsequent research phase', 'Led a team investigating centralized and decentralized bio-inspired algorithms for navigation and localization', 'Conducted comparative analysis of algorithmic performance via ROS2 simulations, evaluating runtime efficiency, reliability, and scalability', 'Analyzed trade‑offs of communication overhead, sensor precision, and computational demands', 'Reproduced current multi-agent research into simulator experiments, targeting unaddressed edge cases'],
+    takeaways:['Optimal approach: Sometimes there is not a “best” approach or algorithm to solve a problem. However, it is important to analyze tradeoffs to understand and be informed of an optimal decision. Centralized vs decentralized control as well as heuristic vs bio-inspired algorithms each come with tradeoffs and handle swarms differently. Sometimes a combo of these is beneficial. Small things like number, robot type, and robot sensor can make a large difference in behavior despite the same algorithm.'],
+    nextSteps:['Staying updated: I plan to continue to keep up with swarm research both because it is exciting and to gain more familiarity with implementing and understanding research papers.', 'Physical Implementation: I hope to bring my findings to physical hardware and address some of the challenges that arise with system integration.']
+  },
+  /* 3 — KEY */
+  {
+    title:'Wearable Mechatronics Student Academic Grant',
+    role:'Solo',
+    tags:['End-to-end', 'Embedded System', 'Communication Protocols', 'System Integration', 'ESP32', 'CAD'],
+    overview:'A fully enclosed wearable mechatronic head from scratch, incorporating mechanical, electrical, and firmware integration techniques',
+    inspiration:'Engineering can be an intimidating field and sometimes it is easy to get lost in the technical details. Additionally wearable tech is fascinating to me because of the goal to fit a complex system into a small space. From both of these, I decided that I wanted to build a wearable mechatronic head, a whimsical undertaking that could inspire others to engineer. I was also hoping that this project could help me determine the flavor of engineering that I want to pursue based on my known interests. At the time, I knew vaguely what I wanted to specialize in but wanted to explore and determine specifics.',
+    goals:['Conduct a long term project to get familiar with end to end processes', 'Design a safe, accessible, and functional mechatronic suit framework, integrating modular control and motion components','Learn how to design for highly constrained environments (light weight, comfort, accessibility)', 'Create CAD models of each of the components', 'Experiment with serial and communication protocols'],
+    workflow:['Created sketches, mockups, and CAD models in SOLIDWORKS to explore ergonomic design options and mechanical layout', 'Prototyped and built an ESP32-based control system capable of operating two to four servo motors', 'Integrated an ESP32 microcontroller for wireless communication and expandability', 'Implemented an L298N motor driver circuit and validated it using it’s prototype schematics', 'Analyzed motor torque requirements and frame reinforcement needs through calculation and testing', 'Programmed control logic and IR-based response for remote functionality, with future integration pathways for additional modules', 'Compared fabrication materials including 3D-printed TPU versus lightweight metal for balance between flexibility and strength', 'Optimized the product to account for power constraints, spatial constraints, and comfort'],
+    takeaways:['Curveballs: Sometimes life changes unexpectedly, which can hinder project progress. I had to complete the second half of my project without an advisor because my current one at the time moved on from Olin. Nonetheless, I was able to still seek help and persevere to completion. It was hard because I thought that I needed everything to be near perfect for the project to be successful. However, I was able to break out of the perfectionist mindset while still ensuring that I build a reliable and robust system.'],
+    nextSteps:['System expansion: I mainly focused on head control, could be nice to eventually complete a full body system, Open Source: I would like to eventually open source this project to both create a low entry to barrier and to ensure accessibility'],
+    links:[{label:'Grant Reflection',href:'https://phoenixfiles.olin.edu/do/d6e9be43-8d83-4a3e-bc13-286e6fa7a26d#mode/2up'}]
+  },
+  /* 4 — KEY */
+  {
+    title:'Image to Text to Speech',
+    role:'Solo',
+    image:'DSP.png',
+    tags:['Image Processing','Digital Filtering','MATLAB','Accessibility','Natural Speech Models','Data organization'],
+    overview:'This project investigates how to convert non-digital text into computer-readable text and then into speech through a single end-to-end system. This system captures text with an image input, applies image preprocessing functions to improve readability, uses OCR to extract the text, and finally sends the result to a text-to-speech model for spoken output. This was implemented in MATLAB using the Computer Vision Toolbox for OCR, the Image Processing Toolbox for preprocessing, and Audio Toolbox for speech synthesis. MATLAB’s OCR documentation also notes that recognition performs best when text is clean and located on a uniform background, which supports the decision to emphasize preprocessing as a key part of the workflow.',
+    inspiration:'I was motivated by the accessibility gap in non-digital text. A significant amount of text exists only in physical form, from handwritten notes to books to signs and labels. Additionally, current optical character recognition (OCR) technology requires specific conditions such as light and consistent handwriting which limits its capabilities and accessibility. I wanted to explore how a vision-to-speech system could convert non-digital text into spoken output, making text-to-speech tools more useful in everyday environments rather than just digitized content.',
+    goals:['Build a working software system that converts an input image of text into spoken audio', 'Evaluate whether preprocessing, especially edge-aware filtering and cleanup, improves OCR accuracy before synthesis', 'Compare performance across different text types, including clean printed text and more challenging handwriting', 'Understand the underlying methods used by MATLAB’s OCR and speech synthesis tools to determine their capabilities', 'Explore a stretch implementation that captures images directly from hardware and routes them into the software pipeline'],
+    workflow:['Started with MATLAB’s built-in OCR examples as the baseline MVP and verified that the pipeline works on both reference and novel images. MathWorks provides example workflows for recognizing text from images and for segmenting and reading text in natural scenes, making them a practical starting point for benchmarking.', 'Added the output from the OCR built-in examples to MATLAB’s text2speech function. I did this with the built-in examples to increase standardization and reduce variables for the purpose of trialing the system.', 'Implemented my own OCR functions based on what I’ve learned from the text to speech model, research, and extraction equations', 'Investigated preprocessing techniques that can improve OCR reliability before recognition. MATLAB’s OCR guidance emphasizes image quality and text isolation, so testing filters, denoising steps, and edge-based enhancement is directly relevant to system performance.', 'Benchmarked OCR accuracy across printed text, scene text, and handwriting-heavy samples. MATLAB notes that OCR performs best under cleaner text conditions, so this comparison would clarify the project’s practical limits.', 'Added post-processing for OCR correction, especially where word-level recognition fails before speech synthesis.'],
+    takeaways:['Sub-system interface: A strong lesson from this project is that accessibility systems often succeed or fail at the interfaces between subsystems rather than inside a single model. In this case, OCR quality depends heavily on image conditions and preprocessing, while the usefulness of TTS depends on whether the recognized text is accurate enough to be spoken naturally and with low latency.','Built-in tools: Another key takeaway is that using built-in tools is still valuable when paired with careful evaluation. MATLAB’s OCR and speech synthesis tooling makes rapid prototyping possible, which is useful for testing system architecture first before deciding whether custom OCR models, handwriting-focused methods, or more advanced speech synthesis approaches are necessary'],
+    nextSteps:['Compare different speech synthesis options for latency, naturalness, and ease of deployment in MATLAB', 'Move from static image input to a live camera-based system and test the full accessibility pipeline on hardware.'],
+    links:[{label:'Report',href:'https://drive.google.com/file/d/10AosIGH9i_HrrEYnC1waSkP3dIBXYppL/view?usp=sharing'}]
+  },
+  /* 5 — KEY */
+  {
+    title:'Robotics Drawing Arm',
+    role:'2-person team',
+    tags:['Python', 'Actuation', 'IK Solver'],
+    overview:'This project developed a robotic drawing arm on a 5-DOF platform that could trace predefined waypoints and draw basic shapes in simulation. The minimum viable product focused on generating smooth motion with cubic interpolation and solving inverse kinematics numerically so the arm could move accurately from point to point. Computer vision was considered as a stretch goal, but the final implementation centered on the software pipeline because the robot hardware was unavailable at deployment time. Even so, I successfully validated the full drawing workflow in the visualizer tool.',
+    inspiration:'This project grew out of a desire to blend fine arts and robotics while seeing how they intersect. The idea of programming a 5-DOF arm to trace shapes in a plane was formed from the desire to practically apply kinematic equations and to explore the potential applications. Particularly this could be applied towards merging hand-drawn shapes and machine precision, such as tools including CNC machines and laser cutters, which require digitally drawn files, paint-based drawing, and etching.',
+    goals:['Build 2D drawing system code for a robotic arm that holds a laser pointer tool', 'For understanding purposes, manually compute DH parameters, forward kinematics, Jacobians, and damped inverse Jacobians', 'Verify the system on multiple shapes in simulation and identify edge cases'],
+    workflow: ['Defined waypoint files for each shape', 'Computed arm configuration using the DH table and forward kinematics', 'Used inverse kinematics to map target points into joint angles', 'Calculated the geometric Jacobian and damped inverse Jacobian for numerical IK', 'Generated smooth trajectories between waypoints using cubic polynomial interpolation', 'Tested the result in the visualizer and iterate on the code until the paths behaved correctly'],
+    takeaways:['Theory to Application: This project showed how mathematical robotics concepts translate into working motion control software. In particular, the DH convention, Jacobian-based control, and numerical IK became much more tangible when used to solve an end-to-end drawing task.', 'Scoping: Implementation took longer than expected and that outside factors disrupted the hardware phase, which made adaptation and persistence an important part of the project experience.'],
+    nextSteps:['Physical Implementation: I aim to deploy the software on a physical robot platform to address tradeoffs associated with simulation-to-physical integration.', 'Computer Vision: I hope to add the planned OpenCV computer vision layer.', 'Capabilities: I plan to expand from simple geometric shapes to more expressive drawings and improve solver robustness near singularities and unreachable poses.'],
+    links:[{label:'Demo Video',href:'https://drive.google.com/file/d/16TO0bxjxKHubTl1pHafo3S86MDvQGDGM/view'}]
+  },
+
+  /* 6 — SUPPLEMENTAL */
+  {
+    title:'Balancing Inverse Pendulum Robot',
+    role:'3-person team',
+    tags:['Controls','Simulink','Adaptivity','Autonomous','Sensors'],
+    overview:'Project using controls theory physically implemented on an inverse pendulum robot',
+    links:[{label:'Demo Video',href:'https://drive.google.com/file/d/1uhoTTRAOBwJzJyrrYIgepMn57Tki9Bnu/view?usp=sharing'},{label:'Report',href:'https://drive.google.com/file/d/1yxPp1-GWp8p91GanHoQKc5NC1_CsihaO/view?usp=sharing'}]
+  },
+  /* 7 — SUPPLEMENTAL */
+  {
+    title:'Fault Detector for Olin Building Automation System (BAS)',
+    role:'5-person team',
+    tags:['R Language', 'Real Data', 'Real-time', 'Data Cleaning'],
+    overview:'An interfece system that flags errors within Olin’s BAS and reports them in real-time to technicians; the system was first tested in historical data before being implemented on real-time data',
+    links:[{label:'About',href:'https://www.olin.edu/node/8181'}]
+  },
+  /* 8 — SUPPLEMENTAL */
+  {
+    title:'Kinetic Marble Sculpture',
+    role:'4-person team',
+    tags:['Mechanical Design','Fabrication','Actuation'],
+    overview:'Designed and fabricated marble machine from scratch with a power transmission and actuation mechanisms',
+    links:[{label:'Video',href:'https://drive.google.com/file/d/1EC1XlUcHGb0YAn3ig92EVpdAekCGfr29/view?usp=sharing'}]
+  },
+  /* 9 — SUPPLEMENTAL */
+  {
+    title:'Astronomer Glass Plate Matching',
+    role:'3-person team',
+    tags:['Data Cleaning','Python','Real Data','Jupyter Notebook'],
+    overview:'Contributed to the Harvard Glass Plate Collection Initiative by matching astronomers’ names with associated data from the NASA ADS API and historical records to build a more complete archive. This work addresses gaps in attribution, as many plates remain unnamed, with the goal of restoring proper recognition to the astronomers involved.',
+    links:[{label:'Collab Notebook',href:'https://colab.research.google.com/drive/1r7gBEGpwfmtgtCc-0YGJ3RXL8nbe1MT9?usp=sharing'}]
+  },
+  /* 10 — SUPPLEMENTAL */
+  {
+    title:'Robot Descent Path Optimization',
+    role:'3-person team',
+    tags:['Embedded System', 'MATLAB', 'Gradient Descent'],
+    overview:'Utilized gradient descent to determine the shortest path for a robot to trek down an elevated surface',
+    links:[{label:'Report',href:'https://drive.google.com/file/d/1tHs-mpSzP7J1Qy7SESaNY4UsRgwk3B4Y/view?usp=sharing'}]
+  },
+  /* 11 — SUPPLEMENTAL */
+  {
+    title:'Radar System Design',
+    role:'Solo',
+    tags:['Electrical Design','Analog Signal Processing','Radar'],
+    overview:'Designed a radar circuit to meet specifcations by filtering and amplifying signal frequencies',
+    links:[{label:'Report',href:'https://drive.google.com/file/d/1suL4kPIYBxtARBdsqXhMq0UG29F2shjN/view?usp=sharing'}]
+  },
+    /* 12 — SUPPLEMENTAL */
+  {
+    title:'Dearborn STEM Academy Engineering Initative',
+    role:'6-person team',
+    tags:['Project Management', 'Technical Communication'],
+    overview:'An opportunity to increase the approachability of engineering concepts for middle and high school students in welcoming, creative, and fun ways; I led a multidiscipinary team to meet these goals by resolving differences in workstyles, communication approaches, and team dynamics.I also strengthened my own technical communication skills by translating complex and abstract engineering topics into accessible activities and lesson plans',
+    links:[{label:'Video',href: 'https://drive.google.com/file/d/16cE3BvGgLxrQ9WL-qi8wdDmIVRutZ6jq/view?usp=sharing'}]
+  },
+  /* 12 — SUPPLEMENTAL */
+  {
+    title:'Electroplated 3d-Print Strength Test',
+    role:'3-person team',
+    tags:['Electroplating','Material Selection','Tensile Testing','SEM Microscope'],
+    overview:'Electroplated copper onto PLA 3D-prints coated with graphite to test if this improved their structural integrety',
+    links:[{label:'Poster',href:'https://drive.google.com/file/d/1NbbqhbFMvoT_Hsil6Qzte7E5m4rQL9iZ/view?usp=sharing'}]
+  }
+];
+
+/* DOM */
+const modalBg   = document.getElementById('modal-bg');
+const modal     = document.getElementById('modal');
+const closeBtn  = document.getElementById('modal-close');
+const prog      = document.getElementById('prog');
+const badge     = document.getElementById('section-badge');
+const badgeText = document.getElementById('badge-text');
+const txCanvas  = document.getElementById('transition-canvas');
+const txCtx     = txCanvas.getContext('2d');
+const navBtns   = [...document.querySelectorAll('.nav-btn')];
+
+const PANELS = ['mon-panel','chip-panel','sensor-panel','robot-panel']
+  .map(id => document.getElementById(id));
+
+let curSec = 0;
+
+function goTo(idx){
+  if(idx === curSec) return;
+  const fromSec = curSec;
+  curSec = idx;
+  fireTransition(fromSec, idx);
+  showBadge(idx);
+  PANELS.forEach((p, i) => {
+    if(i === idx){
+      p.classList.add('sec-active');
+      p.style.animation = 'none';
+      requestAnimationFrame(() => { p.style.animation = ''; });
+    } else {
+      p.classList.remove('sec-active');
+    }
+  });
+  window.scrollTo({top:0, behavior:'instant'});
+  navBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+  prog.style.width = (idx / 3 * 100) + '%';
+}
+window.goTo = goTo;
+
+/* Transition canvas */
+let txAnim = null;
+const TX_THEMES = [
+  {primary:'#00ff88', secondary:'#00d4ff', label:'IMPLEMENTING · MICROCONTROLLER'},
+  {primary:'#7c3aed', secondary:'#a78bfa', label:'CALLIBRATING · SENSOR'},
+  {primary:'#00d4ff', secondary:'#f97316', label:'DEPLOYING · ROVER'},
+  {primary:'#f97316', secondary:'#00d4ff', label:'REPROGRAMMING · MONITOR'},
+  {primary:'#a78bfa', secondary:'#7c3aed', label:'RESETTING · MICROCONTROLLER'},
+  {primary:'#00d4ff', secondary:'#00ff88', label:'REBOOTING · SENSOR'},
+];
+
+function fireTransition(from, to){
+  const forward = to > from;
+  const thIdx = forward ? (to - 1) : (3 + (from - 1));
+  const th = TX_THEMES[Math.min(thIdx, TX_THEMES.length - 1)];
+  txCanvas.width = innerWidth; txCanvas.height = innerHeight;
+  const pkts = [];
+  for(let i = 0; i < 32; i++){
+    pkts.push({
+      x: Math.random() * innerWidth * (forward ? .5 : 1),
+      y: Math.random() * innerHeight,
+      spd: (forward ? 1 : -1) * (10 + Math.random() * 20),
+      len: 25 + Math.random() * 80,
+      byte: Math.floor(Math.random() * 256).toString(16).toUpperCase().padStart(2,'0'),
+      alpha: .4 + Math.random() * .6,
+      sz: 8 + Math.random() * 5,
+      col: Math.random() > .4 ? th.primary : th.secondary,
+    });
+  }
+  let start = null;
+  const DUR = 700;
+  function frame(ts){
+    if(!start) start = ts;
+    const t = Math.min((ts - start) / DUR, 1);
+    const ca = t < .12 ? t / .12 : t < .72 ? 1 : 1 - (t - .72) / .28;
+    txCanvas.style.opacity = ca;
+    txCtx.clearRect(0, 0, txCanvas.width, txCanvas.height);
+    txCtx.fillStyle = `rgba(4,7,11,${.65 * ca})`;
+    txCtx.fillRect(0, 0, txCanvas.width, txCanvas.height);
+    pkts.forEach(pk => {
+      pk.x += pk.spd;
+      if(pk.x > txCanvas.width + 150) pk.x = -pk.len;
+      if(pk.x < -pk.len - 150) pk.x = txCanvas.width + 20;
+      const g = txCtx.createLinearGradient(pk.x - (forward ? pk.len : -pk.len), pk.y, pk.x, pk.y);
+      g.addColorStop(0,'transparent');
+      g.addColorStop(1, pk.col + Math.round(pk.alpha * ca * 200).toString(16).padStart(2,'0'));
+      txCtx.strokeStyle = g; txCtx.lineWidth = 1.5;
+      txCtx.beginPath(); txCtx.moveTo(pk.x - pk.len, pk.y); txCtx.lineTo(pk.x, pk.y); txCtx.stroke();
+      txCtx.font = `${pk.sz}px "Space Grotesk",monospace`;
+      txCtx.fillStyle = pk.col + Math.round(pk.alpha * ca * 255).toString(16).padStart(2,'0');
+      txCtx.fillText('0x' + pk.byte, pk.x + 4, pk.y + 4);
+    });
+    const sy = (t * txCanvas.height * 1.4) - txCanvas.height * .2;
+    const sg = txCtx.createLinearGradient(0, sy - 28, 0, sy + 28);
+    sg.addColorStop(0,'transparent'); sg.addColorStop(.5, th.primary + '22'); sg.addColorStop(1,'transparent');
+    txCtx.fillStyle = sg; txCtx.fillRect(0, sy - 28, txCanvas.width, 56);
+    if(t > .18 && t < .88){
+      const la = t < .32 ? (t - .18) / .14 : t < .74 ? 1 : 1 - (t - .74) / .14;
+      const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+      txCtx.save();
+      txCtx.font = `700 ${clamp(innerWidth / 24, 16, 38)}px "Pilcrow Rounded",sans-serif`;
+      txCtx.textAlign = 'center';
+      txCtx.fillStyle = `rgba(232,240,233,${la * ca})`;
+      txCtx.fillText(th.label, txCanvas.width / 2, txCanvas.height / 2 - 6);
+      const tw = txCtx.measureText(th.label).width;
+      txCtx.strokeStyle = th.primary + Math.round(la * ca * 160).toString(16).padStart(2,'0');
+      txCtx.lineWidth = 1.2;
+      txCtx.beginPath();
+      txCtx.moveTo(txCanvas.width / 2 - tw / 2, txCanvas.height / 2 + 8);
+      txCtx.lineTo(txCanvas.width / 2 + tw / 2, txCanvas.height / 2 + 8);
+      txCtx.stroke();
+      txCtx.restore();
+    }
+    if(t < 1) txAnim = requestAnimationFrame(frame);
+    else { txCanvas.style.opacity = 0; txAnim = null; }
+  }
+  if(txAnim) cancelAnimationFrame(txAnim);
+  txAnim = requestAnimationFrame(frame);
+}
+
+/* Badge */
+const BADGE_LABELS = ['Monitor · About','Microcontroller · Projects','Sensor Board · Education','Rover · Contact'];
+const BADGE_COLS   = ['var(--color-primary)','var(--color-purple)','var(--color-cyan)','#f97316'];
+function showBadge(sec){
+  badgeText.textContent = BADGE_LABELS[sec];
+  const dot = document.querySelector('.badge-dot');
+  dot.style.background   = BADGE_COLS[sec];
+  dot.style.boxShadow    = `0 0 5px ${BADGE_COLS[sec]}`;
+  badge.classList.add('visible');
+  clearTimeout(badge._t);
+  badge._t = setTimeout(() => badge.classList.remove('visible'), 2200);
+}
+
+/* Modal */
+let lastTrig = null;
+function openModal(idx, trig){
+  const p = PROJECTS[idx]; if(!p) return;
+  lastTrig = trig || document.activeElement;
+  document.getElementById('m-title').textContent = p.title;
+  document.getElementById('m-role').textContent  = p.role;
+  document.getElementById('m-tags').innerHTML    = p.tags.map(t => `<span class="m-tag">${t}</span>`).join('');
+
+  const toList = val => {
+    const arr = Array.isArray(val) ? val : String(val).split('\n').filter(Boolean);
+    return `<ul>${arr.map(i => {
+      const m = i.match(/^([^:]+):\s*(.*)$/);
+      return m ? `<li><strong>${m[1]}:</strong> ${m[2]}</li>` : `<li>${i}</li>`;
+    }).join('')}</ul>`;
+  };
+
+  document.getElementById('m-body').innerHTML = `
+      <div>
+        <div class="ms-title">Overview</div>
+        <div class="ms-text">
+          ${p.image ? `<img src="${p.image}" alt="${p.title}" class="m-img-float">` : ''}
+          ${p.overview}
+        </div>
+      </div>
+      ${p.inspiration ? `<div><div class="ms-title">Inspiration</div><div class="ms-text">${p.inspiration}</div></div>` : ''}
+      ${p.goals ? `<div><div class="ms-title">Goals</div><div class="ms-text">${toList(p.goals)}</div></div>` : ''}
+      ${p.workflow ? `<div><div class="ms-title">Workflow</div><div class="ms-text">${toList(p.workflow)}</div></div>` : ''}
+      ${p.takeaways ? `<div><div class="ms-title">Takeaways</div><div class="ms-text">${toList(p.takeaways)}</div></div>` : ''}
+      ${p.nextSteps ? `<div><div class="ms-title">Next Steps</div><div class="ms-text">${toList(p.nextSteps)}</div></div>` : ''}
+      ${p.links && p.links.length ? `<div><div class="ms-title">Links</div><div class="m-links">${p.links.map(l => `<a class="mlink" href="${l.href}" target="_blank" rel="noopener noreferrer">${l.label} →</a>`).join('')}</div></div>` : ''}
+      `;
+
+  modalBg.classList.add('open'); modal.classList.add('open'); modal.removeAttribute('hidden');
+  document.body.classList.add('modal-open');
+  const foc = [...modal.querySelectorAll('a[href],button,[tabindex]:not([tabindex="-1"])')];
+  const trap = e => {
+    if(e.key !== 'Tab') return;
+    if(e.shiftKey){ if(document.activeElement === foc[0]){ e.preventDefault(); foc[foc.length-1].focus(); }}
+    else { if(document.activeElement === foc[foc.length-1]){ e.preventDefault(); foc[0].focus(); }}
+  };
+  modal.addEventListener('keydown', trap); modal._trap = trap;
+  requestAnimationFrame(() => closeBtn?.focus());
+}
+function closeModal(){
+  if(!modal.classList.contains('open')) return;
+  if(modal._trap){ modal.removeEventListener('keydown', modal._trap); delete modal._trap; }
+  modalBg.classList.remove('open'); modal.classList.remove('open');
+  document.body.classList.remove('modal-open'); modal.setAttribute('hidden','');
+  lastTrig?.focus?.();
+}
+
+window.openModal  = openModal;
+window.closeModal = closeModal;
+modalBg?.addEventListener('click', e => { if(e.target === modalBg) closeModal(); });
+closeBtn?.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+/* Wire up KEY PROJECT cards */
+document.querySelectorAll('#key-cards-el .pcard').forEach(card => {
+  const idx = parseInt(card.dataset.idx, 10);
+  card.addEventListener('click', () => openModal(idx, card));
+  card.addEventListener('keydown', e => {
+    if((e.key === 'Enter' || e.key === ' ') && !card.classList.contains('hidden')){
+      e.preventDefault(); openModal(idx, card);
+    }
+  });
+});
+
+/* Wire up SUPPLEMENTAL cards */
+document.querySelectorAll('#esp-cards-el .supp-card').forEach(card => {
+  const idx = parseInt(card.dataset.idx, 10);
+  card.addEventListener('click', () => openModal(idx, card));
+  card.addEventListener('keydown', e => {
+    if((e.key === 'Enter' || e.key === ' ') && !card.classList.contains('hidden')){
+      e.preventDefault(); openModal(idx, card);
+    }
+  });
+});
+
+/* Supplemental filter */
+document.getElementById('esp-filters-el')?.addEventListener('click', e => {
+  const btn = e.target.closest('.esp-filter'); if(!btn) return;
+  const f = btn.dataset.filter;
+  document.querySelectorAll('.esp-filter').forEach(b => b.classList.toggle('active', b === btn));
+  document.querySelectorAll('#esp-cards-el .supp-card').forEach(c => {
+    const tags = (c.dataset.tags || '').split(' ');
+    c.classList.toggle('hidden', f !== 'all' && !tags.includes(f));
+  });
+});
+
+/* Education filter */
+document.getElementById('sens-filters-el')?.addEventListener('click', e => {
+  const btn = e.target.closest('.sens-filter'); if(!btn) return;
+  const f = btn.dataset.filter;
+  document.querySelectorAll('.sens-filter').forEach(b => b.classList.toggle('active', b === btn));
+  document.querySelectorAll('.sens-course').forEach(c => {
+    const show = f === 'all' || (c.dataset.tags || '').split(' ').includes(f);
+    c.classList.toggle('hidden', !show);
+  });
+});
+
+/* Starfield */
+(()=>{
+  const c = document.getElementById('stars');
+  const ctx = c?.getContext('2d'); if(!c || !ctx) return;
+  let st = [];
+  const rsz = () => {
+    c.width = innerWidth; c.height = innerHeight;
+    st = Array.from({length: 200}, () => ({
+      x: Math.random() * c.width, y: Math.random() * c.height,
+      r: Math.random() * 1.1 + .2, a: Math.random(), s: Math.random() * .003 + .001
+    }));
+  };
+  rsz(); addEventListener('resize', rsz);
+  const draw = () => {
+    ctx.clearRect(0, 0, c.width, c.height);
+    st.forEach(s => {
+      s.a += s.s;
+      const o = ((Math.sin(s.a) + 1) / 2) * .5 + .06;
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,215,255,${o})`; ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  };
+  draw();
+})();
+
+/* Init */
+prog.style.width = '0%';
+setTimeout(() => showBadge(0), 600);
+
+/* Sparks */
+document.querySelectorAll('.nav-btn').forEach(el => {
+  el.addEventListener('click', e => {
+    for(let i = 0; i < 7; i++){
+      const s = document.createElement('div'); s.className = 'spark';
+      const ang = (i / 7) * Math.PI * 2, d = 18 + Math.random() * 22;
+      s.style.cssText = [
+        `left:${e.clientX}px`, `top:${e.clientY}px`,
+        `--dx:${Math.cos(ang)*d}px`, `--dy:${Math.sin(ang)*d}px`,
+        `--dur:${(.35 + Math.random() * .3).toFixed(2)}s`,
+        'background:var(--color-primary)'
+      ].join(';');
+      document.body.appendChild(s); setTimeout(() => s.remove(), 700);
+    }
+  });
+});
+
+/* Keyboard nav */
+addEventListener('keydown', e => {
+  if(modal.classList.contains('open')) return;
+  if(e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'j') goTo(Math.min(3, curSec + 1));
+  if(e.key === 'ArrowLeft'  || e.key === 'ArrowUp'   || e.key === 'k') goTo(Math.max(0, curSec - 1));
+});
+
+})();
+</script>
+
+</body>
+</html>
