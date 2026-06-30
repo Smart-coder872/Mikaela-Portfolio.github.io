@@ -1126,10 +1126,10 @@ function openModal(idx, trig){
           ${p.overview}
         </div>
       </div>
+      ${p.takeaways ? `<div><div class="ms-title">Takeaways</div><div class="ms-text">${toList(p.takeaways)}</div></div>` : ''}
       ${p.inspiration ? `<div><div class="ms-title">Inspiration</div><div class="ms-text">${p.inspiration}</div></div>` : ''}
       ${p.goals ? `<div><div class="ms-title">Goals</div><div class="ms-text">${toList(p.goals)}</div></div>` : ''}
       ${p.workflow ? `<div><div class="ms-title">Workflow</div><div class="ms-text">${toList(p.workflow)}</div></div>` : ''}
-      ${p.takeaways ? `<div><div class="ms-title">Takeaways</div><div class="ms-text">${toList(p.takeaways)}</div></div>` : ''}
       ${p.nextSteps ? `<div><div class="ms-title">Next Steps</div><div class="ms-text">${toList(p.nextSteps)}</div></div>` : ''}
       ${p.links && p.links.length ? `<div><div class="ms-title">Links</div><div class="m-links">${p.links.map(l => `<a class="mlink" href="${l.href}" target="_blank" rel="noopener noreferrer">${l.label} →</a>`).join('')}</div></div>` : ''}
       `;
